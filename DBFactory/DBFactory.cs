@@ -9,9 +9,9 @@ namespace DBFactory
 {
     public interface IDBBase
     {
-        List<Recipe> GetRecipes();
+        List<Recipe> GetRecipes(int Count);
         Recipe GetRecipe(int ID);
-        void SaveRecipe(Recipe Recipe);
+        int SaveRecipe(Recipe Recipe);
         void DeleteRecipe(int ID);
     }
 

@@ -8,11 +8,11 @@ namespace DBRavenImplementation
 {
     public class DBRaven : IDBBase
     {
-        public List<Recipe> GetRecipes()
+        public List<Recipe> GetRecipes(int Count)
         {
             using (IDocumentSession session = RavenStore.Store.OpenSession())
             {
-                return session.Query<Recipe>().Take(10).ToList();
+                return session.Query<Recipe>().Take(Count).ToList();
             }
         }
 
@@ -24,13 +24,15 @@ namespace DBRavenImplementation
             }
         }
 
-        public void SaveRecipe(Recipe Recipe)
+        public int SaveRecipe(Recipe Recipe)
         {
             using (IDocumentSession session = RavenStore.Store.OpenSession())
             {
                 session.Store(Recipe);
                 session.SaveChanges();
             }
+
+            return -1;
         }
 
         public void DeleteRecipe(int ID)

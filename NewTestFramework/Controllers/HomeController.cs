@@ -8,15 +8,17 @@ namespace NewTestFramework.Controllers
     {
         public ActionResult Index()
         {
-            var cake = new DBFactory.Structures.Recipe("Kake");
-            DB.Instance.SaveRecipe(cake);
-
             return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+
+            var cake = new DBFactory.Structures.Recipe("Kake");
+            int id = DB.Instance.SaveRecipe(cake);
+
+            var recipe = DB.Instance.GetRecipe(id);
 
             return View();
         }

@@ -1,6 +1,7 @@
 ﻿using DBFactory;
 using System.Collections.Generic;
 using DBFactory.Structures;
+using System.Linq;
 
 namespace DBMSSQL
 {
@@ -8,9 +9,9 @@ namespace DBMSSQL
     {
         MySqlContext context = new MySqlContext();
 
-        public List<Recipe> GetRecipes()
+        public List<Recipe> GetRecipes(int Count)
         {
-            return new List<Recipe>();
+            return context.Recipe.Take(Count).ToList();
         }
 
         public Recipe GetRecipe(int ID)
@@ -18,15 +19,16 @@ namespace DBMSSQL
             return context.Recipe.Find(ID);
         }
 
-        public void SaveRecipe(Recipe Recipe)
+        public int SaveRecipe(Recipe Recipe)
         {
             context.Recipe.Add(Recipe);
             context.SaveChanges();
+            return Recipe.ID;
         }
 
         public void DeleteRecipe(int ID)
         {
-            
+            context.Recipe.Remove(GetRecipe(ID));
         }
     }
 }
