@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form id="CreateUserForm">
+    <input id="CreateUserFormUsername" type="text" placeholder="Username" />
+    <input id="CreateUserFormPassword" type="text" placeholder="Password" />
+    <input id="CreateUserFormSubmit" type="submit" value="Opprett ny bruker" />
+</form>
+<div id="CreateUserFormFeedback">
+
+</div>
+
+<script type="text/javascript">
+    $('#CreateUserForm').submit(function () {
+        var username = $('#CreateUserFormUsername');
+        var password = $('#CreateUserFormUsername');
+
+        $.ajax({
+            url: "@Url.Action("/Manage/CreateUser")",
+            data: { Username: username, Password: password }
+        }).done(function (data) {
+            if (data.feedback === 'OK') {
+                $('#CreateUserFormFeedback').html('User created.');
+            }
+        });
+    });
+</script>

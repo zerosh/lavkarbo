@@ -11,28 +11,56 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBRaven", "DBRaven\DBRaven.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBMSSQL", "DBMSSQL\DBMSSQL.csproj", "{418398BE-549B-44B1-B515-3A7B9B72E9B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityFactory", "IdentityFactory\IdentityFactory.csproj", "{2D82A303-1579-4615-9097-6FB709AFF47C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Nicco|Any CPU = Nicco|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Stian|Any CPU = Stian|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Nicco|Any CPU.ActiveCfg = Nicco|Any CPU
+		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Nicco|Any CPU.Build.0 = Nicco|Any CPU
 		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Stian|Any CPU.ActiveCfg = Stian|Any CPU
+		{F4A94FD7-FA25-4DB7-AEAB-0B0A817D389A}.Stian|Any CPU.Build.0 = Stian|Any CPU
 		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Nicco|Any CPU.ActiveCfg = Nicco|Any CPU
+		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Nicco|Any CPU.Build.0 = Nicco|Any CPU
 		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Stian|Any CPU.ActiveCfg = Stian|Any CPU
+		{20ECE4BD-0AE7-4373-9DDD-9E15A078D576}.Stian|Any CPU.Build.0 = Stian|Any CPU
 		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Nicco|Any CPU.ActiveCfg = Nicco|Any CPU
+		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Nicco|Any CPU.Build.0 = Nicco|Any CPU
 		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Stian|Any CPU.ActiveCfg = Stian|Any CPU
+		{75137027-4DA5-4292-B3FB-B16E1EC965D3}.Stian|Any CPU.Build.0 = Stian|Any CPU
 		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Nicco|Any CPU.ActiveCfg = Nicco|Any CPU
+		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Nicco|Any CPU.Build.0 = Nicco|Any CPU
 		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Stian|Any CPU.ActiveCfg = Stian|Any CPU
+		{418398BE-549B-44B1-B515-3A7B9B72E9B9}.Stian|Any CPU.Build.0 = Stian|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Nicco|Any CPU.ActiveCfg = Release|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Nicco|Any CPU.Build.0 = Release|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Stian|Any CPU.ActiveCfg = Release|Any CPU
+		{2D82A303-1579-4615-9097-6FB709AFF47C}.Stian|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
