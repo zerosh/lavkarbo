@@ -11,7 +11,7 @@ namespace NewTestFramework.App_Start
     {
         public static void InstanciateDB()
         { 
-            DB.Instance = DBFactory<DBRaven>.CreateDB();
+            DB.Instance = DBFactory<DBMSSQL.DBMSSQL>.CreateDB();
         }
     }
 }

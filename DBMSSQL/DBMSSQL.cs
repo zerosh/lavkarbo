@@ -6,6 +6,8 @@ namespace DBMSSQL
 {
     public class DBMSSQL : IDBBase
     {
+        MySqlContext context = new MySqlContext();
+
         public List<Recipe> GetRecipes()
         {
             return new List<Recipe>();
@@ -13,13 +15,13 @@ namespace DBMSSQL
 
         public Recipe GetRecipe(int ID)
         {
-            return new Recipe();
+            return context.Recipe.Find(ID);
         }
 
         public void SaveRecipe(Recipe Recipe)
         {
-            var tetst = new tetst();
-            tetst.Recipe.
+            context.Recipe.Add(Recipe);
+            context.SaveChanges();
         }
 
         public void DeleteRecipe(int ID)
