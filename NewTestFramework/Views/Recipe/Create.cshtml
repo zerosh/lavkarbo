@@ -1,0 +1,25 @@
+﻿@model DBFactory.Structures.Recipe
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Create", "Recipe"))
+        {
+            @Html.TextBoxFor(p => p.Name)
+            @Html.DropDownListFor(p => p.GroupId, new SelectList(DBFactory.DB.Instance.GetGroups(int.MaxValue), "ID", "Name"))
+
+            <input type="submit" />
+        }
+    </div>
+</body>
+</html>

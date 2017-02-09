@@ -92,6 +92,7 @@ namespace DBRavenImplementation
             using (IDocumentSession session = RavenStore.Store.OpenSession())
             {
                 session.Delete<Ingredient>(Id);
+                session.SaveChanges();
             }
         }
 
@@ -119,6 +120,7 @@ namespace DBRavenImplementation
             using (IDocumentSession session = RavenStore.Store.OpenSession())
             {
                 session.Delete<Group>(Id);
+                session.SaveChanges();
             }
         }
 

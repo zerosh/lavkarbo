@@ -1,0 +1,72 @@
+﻿@using DBFactory
+@using DBFactory.Structures
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <a href="Recipe/Create">Lag ny </a>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Unique Id
+                    </th>
+                    <th>
+                        Navn
+                    </th>
+
+                    <th>
+                        Gruppe
+                    </th>
+
+                    <th>
+                        Handling
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var recipe in DB.Instance.GetRecipes(int.MaxValue))
+                {
+                    <tr>
+                        <td>
+                            @recipe.ID
+                        </td>
+                        <td>
+                            @recipe.Name
+                        </td>
+                        <td>
+                            @{ 
+                                var group = DB.Instance.GetGroup(recipe.GroupId);
+
+                                string GroupName = "";
+
+                                if (group != null)
+                                {
+                                    GroupName = group.Name;
+                                }
+                            }
+
+                            @GroupName
+                        </td>
+                        <td>
+                            <a href="Recipe/Delete/@recipe.ID">Slett</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
