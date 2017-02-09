@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using DBFactory;
+using DBRavenImplementation;
 
 namespace NewTestFramework.Controllers
 {
@@ -10,6 +8,9 @@ namespace NewTestFramework.Controllers
     {
         public ActionResult Index()
         {
+            var cake = new DBFactory.Structures.Recipe("Kake");
+            DB.Instance.SaveRecipe(cake);
+
             return View();
         }
 
