@@ -13,6 +13,9 @@ namespace DBFactory
         Recipe GetRecipe(int ID);
         int SaveRecipe(Recipe Recipe);
         void DeleteRecipe(int ID);
+        User SaveUser(User User);
+        User GetUser(string Username);
+        void DeleteUser(string Username);
 
         int SaveIngredient(Ingredient Ingredient);
         void DeleteIngredient(int Id);

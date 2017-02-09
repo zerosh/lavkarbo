@@ -19,6 +19,7 @@ namespace DBMSSQL
         }
 
         public virtual DbSet<Recipe> Recipe { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Ingredient> Ingredient { get; set; }
         public virtual DbSet<Group> Group { get; set; }
     }

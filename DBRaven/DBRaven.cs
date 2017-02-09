@@ -33,7 +33,7 @@ namespace DBRavenImplementation
                 session.SaveChanges();
             }
 
-            return -1;
+            return Recipe.ID;
         }
 
         public void DeleteRecipe(int ID)
@@ -41,6 +41,38 @@ namespace DBRavenImplementation
             using (IDocumentSession session = RavenStore.Store.OpenSession())
             {
                 session.Delete<Recipe>(ID);
+            }
+        }
+
+        public User SaveUser(User User)
+        {
+            using (IDocumentSession session = RavenStore.Store.OpenSession())
+            {
+                session.Store(User);
+                session.SaveChanges();
+            }
+
+            return User;
+        }
+
+        public User GetUser(string Username)
+        {
+            using (IDocumentSession session = RavenStore.Store.OpenSession())
+            {
+                return session.Query<User>().Where(x => x.Username == Username).FirstOrDefault();
+            }
+        }
+
+        public void DeleteUser(string Username)
+        {
+            using (IDocumentSession session = RavenStore.Store.OpenSession())
+            {
+                var user = session.Query<User>().Where(x => x.Username == Username).FirstOrDefault();
+
+                if (user != null)
+                {
+                    session.Delete<User>(user);
+                }
             }
         }
 
