@@ -1,0 +1,72 @@
+﻿@model NewTestFramework.Models.Oppskrift
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Oppskrift</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tittel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tittel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Innhold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Innhold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bilde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bilde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisert)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publisert)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grupper.Navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grupper.Navn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

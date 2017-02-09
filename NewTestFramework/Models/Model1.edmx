@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LavkarboModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Grupper">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="recipe id" Type="int" />
+          <Property Name="Antall" Type="int" />
+          <Property Name="Navn" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Oppskrift">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tittel" Type="nchar" MaxLength="10" />
+          <Property Name="Innhold" Type="nchar" MaxLength="10" />
+          <Property Name="Dato" Type="datetime" />
+          <Property Name="Bilde" Type="image" />
+          <Property Name="Gruppe" Type="int" />
+          <Property Name="Publisert" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Ingredient_Oppskrift">
+          <End Role="Oppskrift" Type="Self.Oppskrift" Multiplicity="0..1" />
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oppskrift">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ingredient">
+              <PropertyRef Name="recipe id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oppskrift_Oppskrift">
+          <End Role="Grupper" Type="Self.Grupper" Multiplicity="0..1" />
+          <End Role="Oppskrift" Type="Self.Oppskrift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupper">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Oppskrift">
+              <PropertyRef Name="Gruppe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LavkarboModelStoreContainer">
+          <EntitySet Name="Grupper" EntityType="Self.Grupper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingredient" EntityType="Self.Ingredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oppskrift" EntityType="Self.Oppskrift" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ingredient_Oppskrift" Association="Self.FK_Ingredient_Oppskrift">
+            <End Role="Oppskrift" EntitySet="Oppskrift" />
+            <End Role="Ingredient" EntitySet="Ingredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oppskrift_Oppskrift" Association="Self.FK_Oppskrift_Oppskrift">
+            <End Role="Grupper" EntitySet="Grupper" />
+            <End Role="Oppskrift" EntitySet="Oppskrift" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LavkarboModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Grupper">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Oppskrifts" Relationship="Self.FK_Oppskrift_Oppskrift" FromRole="Grupper" ToRole="Oppskrift" />
+        </EntityType>
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="recipe_id" Type="Int32" />
+          <Property Name="Antall" Type="Int32" />
+          <Property Name="Navn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Oppskrift" Relationship="Self.FK_Ingredient_Oppskrift" FromRole="Ingredient" ToRole="Oppskrift" />
+        </EntityType>
+        <EntityType Name="Oppskrift">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tittel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Innhold" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Dato" Type="DateTime" Precision="3" />
+          <Property Name="Bilde" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Gruppe" Type="Int32" />
+          <Property Name="Publisert" Type="Boolean" />
+          <NavigationProperty Name="Grupper" Relationship="Self.FK_Oppskrift_Oppskrift" FromRole="Oppskrift" ToRole="Grupper" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredient_Oppskrift" FromRole="Oppskrift" ToRole="Ingredient" />
+        </EntityType>
+        <Association Name="FK_Oppskrift_Oppskrift">
+          <End Role="Grupper" Type="Self.Grupper" Multiplicity="0..1" />
+          <End Role="Oppskrift" Type="Self.Oppskrift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupper">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Oppskrift">
+              <PropertyRef Name="Gruppe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingredient_Oppskrift">
+          <End Role="Oppskrift" Type="Self.Oppskrift" Multiplicity="0..1" />
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oppskrift">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ingredient">
+              <PropertyRef Name="recipe_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LavkarboEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gruppers" EntityType="Self.Grupper" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="Oppskrifts" EntityType="Self.Oppskrift" />
+          <AssociationSet Name="FK_Oppskrift_Oppskrift" Association="Self.FK_Oppskrift_Oppskrift">
+            <End Role="Grupper" EntitySet="Gruppers" />
+            <End Role="Oppskrift" EntitySet="Oppskrifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredient_Oppskrift" Association="Self.FK_Ingredient_Oppskrift">
+            <End Role="Oppskrift" EntitySet="Oppskrifts" />
+            <End Role="Ingredient" EntitySet="Ingredients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LavkarboModelStoreContainer" CdmEntityContainer="LavkarboEntities">
+          <EntitySetMapping Name="Gruppers">
+            <EntityTypeMapping TypeName="LavkarboModel.Grupper">
+              <MappingFragment StoreEntitySet="Grupper">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="LavkarboModel.Ingredient">
+              <MappingFragment StoreEntitySet="Ingredient">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="recipe_id" ColumnName="recipe id" />
+                <ScalarProperty Name="Antall" ColumnName="Antall" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oppskrifts">
+            <EntityTypeMapping TypeName="LavkarboModel.Oppskrift">
+              <MappingFragment StoreEntitySet="Oppskrift">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Tittel" ColumnName="Tittel" />
+                <ScalarProperty Name="Innhold" ColumnName="Innhold" />
+                <ScalarProperty Name="Dato" ColumnName="Dato" />
+                <ScalarProperty Name="Bilde" ColumnName="Bilde" />
+                <ScalarProperty Name="Gruppe" ColumnName="Gruppe" />
+                <ScalarProperty Name="Publisert" ColumnName="Publisert" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

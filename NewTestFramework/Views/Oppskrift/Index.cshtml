@@ -1,0 +1,63 @@
+﻿@model IEnumerable<NewTestFramework.Models.Oppskrift>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tittel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Innhold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bilde)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisert)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grupper.Navn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tittel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Innhold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bilde)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Publisert)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grupper.Navn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
