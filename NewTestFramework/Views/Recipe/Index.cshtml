@@ -31,6 +31,9 @@
                     </th>
 
                     <th>
+                        Bilde
+                    </th>
+                    <th>
                         Handling
                     </th>
                 </tr>
@@ -60,8 +63,24 @@
 
                             @GroupName
                         </td>
+
                         <td>
-                            <a href="Recipe/Delete/@recipe.ID">Slett</a>
+                            @{ 
+                                /*
+                                 * Pase image testing.
+                                 */
+                                string Image = "DefaultImage.png";
+                                if (@recipe.Image != null)
+                                {
+                                    var base64 = Convert.ToBase64String(recipe.Image);
+                                    Image = string.Format("data:image/gif;base64, {0}", base64);
+                                }
+                            }
+                            <img src="@Image" width="150" height="150" />
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID}, null)
                         </td>
                     </tr>
                 }

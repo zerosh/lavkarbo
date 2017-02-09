@@ -13,7 +13,7 @@ namespace DBFactory.Structures
         public int ID { get; private set; }
         public string Name { get; set; }
         public int GroupId { get; set; }
-
+        public byte[] Image { get; set; }
         public Recipe()
         {
         }

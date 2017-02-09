@@ -2,6 +2,7 @@
 using DBFactory.Structures;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -28,6 +29,24 @@ namespace NewTestFramework.Controllers
         {
             try
             {
+                /*
+                 * Handle image upload.
+                 */ 
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0] as HttpPostedFileBase;
+
+                    if (file.ContentLength > 0)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            file.InputStream.CopyTo(ms);
+                            byte[] data = ms.GetBuffer();
+                            recipe.Image = data;
+                        }
+                    }
+                }
+
                 DB.Instance.SaveRecipe(recipe);
                 return RedirectToAction("Index");
             }

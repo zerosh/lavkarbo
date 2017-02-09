@@ -41,7 +41,7 @@
                             @group.Name
                         </td>
                         <td>
-                            <a href="Group/Delete/@group.Id">Slett</a>
+                            @Html.ActionLink("Slett", "Delete", new { id = group.Id }, null)
                         </td>
                     </tr>
                 }

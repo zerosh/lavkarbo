@@ -12,14 +12,46 @@
     <title></title>
 </head>
 <body>
-    <div>
-        @using (Html.BeginForm("Create", "Recipe"))
+    <div class="form-horizontal">
+        @using (Html.BeginForm("Create", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.TextBoxFor(p => p.Name)
-            @Html.DropDownListFor(p => p.GroupId, new SelectList(DBFactory.DB.Instance.GetGroups(int.MaxValue), "ID", "Name"))
+            <div class="form-group">
+                <label class="control-label col-md-2">Tittel</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Gruppe</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(p => p.GroupId, new SelectList(DBFactory.DB.Instance.GetGroups(int.MaxValue), "ID", "Name"), htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Bilde</label>
+                <div class="col-md-10">
+                    <img id="ImageUploadPreview" src="#" width="200" height="200" />
+                    <input type="file" class="form-control filestyle" name="SomeFile" onchange="reloadPreviewImage(event)">
+                </div>
+            </div>
 
             <input type="submit" />
         }
     </div>
 </body>
 </html>
+
+
+@section Scripts
+{
+    <script>
+        /*
+            Preview image upload.
+        */
+        var reloadPreviewImage = function (event) {
+            $("#ImageUploadPreview").attr('src', URL.createObjectURL(event.target.files[0]));
+        };
+    </script>
+}
