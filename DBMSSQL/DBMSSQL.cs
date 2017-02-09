@@ -18,7 +18,8 @@ namespace DBMSSQL
 
         public void SaveRecipe(Recipe Recipe)
         {
-            
+            var tetst = new tetst();
+            tetst.Recipe.
         }
 
         public void DeleteRecipe(int ID)
