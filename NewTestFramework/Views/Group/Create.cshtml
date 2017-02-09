@@ -1,0 +1,23 @@
+﻿@model DBFactory.Structures.Group
+
+@{
+    ViewBag.Title = "Lag ny gruppe";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @using(@Html.BeginForm("Create", "Group", FormMethod.Post))
+        {
+            @Html.TextBoxFor(p => p.Name)
+            <input type="submit" />
+        }
+    </div>
+</body>
+</html>

@@ -13,6 +13,15 @@ namespace DBFactory
         Recipe GetRecipe(int ID);
         int SaveRecipe(Recipe Recipe);
         void DeleteRecipe(int ID);
+
+        int SaveIngredient(Ingredient Ingredient);
+        void DeleteIngredient(int Id);
+        List<Ingredient> GetIngredients(int RecipeId, int Count);
+
+        int SaveGroup(Group Group);
+        void DeleteGroup(int Id);
+        Group GetGroup(int Id);
+        List<Group> GetGroups(int Count);
     }
 
     public static class DB

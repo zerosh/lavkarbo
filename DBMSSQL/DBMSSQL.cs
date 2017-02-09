@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DBFactory.Structures;
 using System.Linq;
+using System;
 
 namespace DBMSSQL
 {
@@ -29,6 +30,49 @@ namespace DBMSSQL
         public void DeleteRecipe(int ID)
         {
             context.Recipe.Remove(GetRecipe(ID));
+            context.SaveChanges();
+        }
+
+        public int SaveIngredient(Ingredient Ingredient)
+        {
+            context.Ingredient.Add(Ingredient);
+            context.SaveChanges();
+            return Ingredient.Id;
+        }
+
+        public List<Ingredient> GetIngredients(int RecipeId, int Count)
+        {
+            var data = from d in context.Ingredient where d.RecipeId == RecipeId select d;
+            return data.Take(Count).ToList();
+        }
+
+        public void DeleteIngredient(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int SaveGroup(Group Group)
+        {
+            context.Group.Add(Group);
+            context.SaveChanges();
+
+            return Group.Id;
+        }
+
+        public Group GetGroup(int Id)
+        {
+            return context.Group.Find(Id);
+        }
+
+        public List<Group> GetGroups(int Count)
+        {
+            return context.Group.Take(Count).ToList();
+        }
+
+        public void DeleteGroup(int Id)
+        {
+            context.Group.Remove(GetGroup(Id));
+            context.SaveChanges();
         }
     }
 }

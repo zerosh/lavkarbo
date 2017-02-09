@@ -12,6 +12,14 @@ namespace DBMSSQL
         {
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MySqlContext>());
+            base.OnModelCreating(modelBuilder);
+        }
+
         public virtual DbSet<Recipe> Recipe { get; set; }
+        public virtual DbSet<Ingredient> Ingredient { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
     }
 }

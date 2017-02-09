@@ -15,10 +15,15 @@ namespace NewTestFramework.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            var cake = new DBFactory.Structures.Recipe("Kake");
+            DB.Instance.SaveGroup(new DBFactory.Structures.Group("Bakst"));
+
+            var cake = new DBFactory.Structures.Recipe("Kake", 0);
             int id = DB.Instance.SaveRecipe(cake);
 
             var recipe = DB.Instance.GetRecipe(id);
+            
+            var ingredient = new DBFactory.Structures.Ingredient(id, "Egg", 6);
+            DB.Instance.SaveIngredient(ingredient);
 
             return View();
         }

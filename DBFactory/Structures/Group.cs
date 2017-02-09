@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace DBFactory.Structures
 {
-    public class Recipe
+    public class Group
     {
         [Key]
-        public int ID { get; private set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int GroupId { get; set; }
 
-        public Recipe()
+        public Group()
         {
         }
 
-        public Recipe(string Name, int GroupId)
+        public Group(string Name)
         {
             this.Name = Name;
-            this.GroupId = GroupId;
         }
     }
 }

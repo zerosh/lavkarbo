@@ -18,7 +18,25 @@
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
 
+Groups:
+<ul>
+    @foreach (var item in DB.Instance.GetGroups(100))
+    {
+        <li> @item.Name </li>
+    }
+</ul>
+
+
+Recipes:
+
 @foreach (var item in @DB.Instance.GetRecipes(10))
 {
-    @item.ID @item.Name
+    @item.Name
+
+    <ul>
+        @foreach (var ingredient in @DB.Instance.GetIngredients(@item.ID, 100))
+        {
+            <li> @ingredient.Id @ingredient.Name @ingredient.Amount </li>
+        }
+    </ul>
 }

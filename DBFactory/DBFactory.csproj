@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="DBFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structures\Group.cs" />
+    <Compile Include="Structures\Ingredient.cs" />
     <Compile Include="Structures\Recipies.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

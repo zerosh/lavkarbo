@@ -7,21 +7,23 @@ using System.Threading.Tasks;
 
 namespace DBFactory.Structures
 {
-    public class Recipe
+    public class Ingredient
     {
         [Key]
-        public int ID { get; private set; }
+        public int Id { get; set; }
+        public int RecipeId { get; set; }
         public string Name { get; set; }
-        public int GroupId { get; set; }
+        public int Amount { get; set; }
 
-        public Recipe()
+        public Ingredient()
         {
         }
 
-        public Recipe(string Name, int GroupId)
+        public Ingredient(int RecipeId, string Name, int Amount)
         {
+            this.RecipeId = RecipeId;
             this.Name = Name;
-            this.GroupId = GroupId;
+            this.Amount = Amount;
         }
     }
 }
