@@ -14,12 +14,14 @@ namespace DBFactory.Structures
 
         public Recipe()
         {
+            FinishedMealImage = new ImageExtension();
         }
 
         public Recipe(string Name, int GroupId)
         {
             this.Name = Name;
             this.GroupId = GroupId;
+            FinishedMealImage = new ImageExtension();
         }
     }
 }
