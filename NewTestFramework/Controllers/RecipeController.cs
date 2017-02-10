@@ -60,5 +60,10 @@ namespace NewTestFramework.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Details(int Id)
+        {
+            return View(DB.Instance.GetRecipe(Id));
+        }
     }
 }

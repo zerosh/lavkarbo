@@ -10,6 +10,8 @@ namespace DBFactory
     public interface IDBBase
     {
         List<Recipe> GetRecipes(int Count);
+        List<Recipe> GetRecipesDecendingOrder(int Count);
+        List<Recipe> GetRecipesPublishedDecendingOrder(int Count);
         Recipe GetRecipe(int ID);
         int SaveRecipe(Recipe Recipe);
         void DeleteRecipe(int ID);

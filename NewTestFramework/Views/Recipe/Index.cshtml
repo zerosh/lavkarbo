@@ -23,7 +23,7 @@
                         Unique Id
                     </th>
                     <th>
-                        Navn
+                        Tittel
                     </th>
 
                     <th>
@@ -56,7 +56,7 @@
                             @recipe.ID
                         </td>
                         <td>
-                            @recipe.Name
+                            @recipe.Title
                         </td>
                         <td>
                             @{ 
@@ -90,7 +90,9 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = @recipe.ID }, null) | @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID }, null)
+                            @Html.ActionLink("Se oppskrift", "Details", new { id = @recipe.ID }, null)
+                            | @Html.ActionLink("Rediger", "Edit", new { id = @recipe.ID }, null) 
+                            | @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID }, null)
                         </td>
                     </tr>
                 }

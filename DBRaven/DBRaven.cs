@@ -17,6 +17,22 @@ namespace DBRavenImplementation
             }
         }
 
+        public List<Recipe> GetRecipesDecendingOrder(int Count)
+        {
+            using (IDocumentSession session = RavenStore.Store.OpenSession())
+            {
+                return session.Query<Recipe>().OrderByDescending(p => p.ID).Take(Count).ToList();
+            }
+        }
+
+        public List<Recipe> GetRecipesPublishedDecendingOrder(int Count)
+        {
+            using (IDocumentSession session = RavenStore.Store.OpenSession())
+            {
+                return session.Query<Recipe>().Where(p => p.Published == true).OrderByDescending(p => p.ID).Take(Count).ToList();
+            }
+        }
+
         public Recipe GetRecipe(int ID)
         {
             using (IDocumentSession session = RavenStore.Store.OpenSession())

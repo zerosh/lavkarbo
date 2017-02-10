@@ -15,6 +15,14 @@ namespace DBMSSQL
             return context.Recipe.Take(Count).ToList();
         }
 
+        public List<Recipe> GetRecipesDecendingOrder(int Count)
+        {
+            return context.Recipe.OrderByDescending(p => p.ID).Take(Count).ToList();
+        }
+        public List<Recipe> GetRecipesPublishedDecendingOrder(int Count)
+        {
+            return context.Recipe.Where(p => p.Published == true).OrderByDescending(p => p.ID).Take(Count).ToList();
+        }
         public Recipe GetRecipe(int ID)
         {
             return context.Recipe.Find(ID);
@@ -27,7 +35,7 @@ namespace DBMSSQL
 
             if (current != null)
             {
-                current.Name = Recipe.Name;
+                current.Title = Recipe.Title;
                 current.Published = Recipe.Published;
                 current.GroupId = Recipe.GroupId;
                 current.ShortDescription = Recipe.ShortDescription;

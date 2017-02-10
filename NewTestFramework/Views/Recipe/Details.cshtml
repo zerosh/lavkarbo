@@ -1,0 +1,67 @@
+﻿@model DBFactory.Structures.Recipe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="row">
+        <!-- Left side -->
+        <div class="col-md-3">
+            <div class="row">
+                <b>Ingredienser</b>
+                <ul>
+                    <li>Egg 6 stk</li>
+                    <li>Vann 2 dl</li>
+                    <li>Salt 2 ts</li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <a href="">Legg til i handlelisten.</a>
+            </div>
+
+            <div class="row">
+                <a href="">Send til venn</a>
+            </div>
+        </div>
+        <!-- Right side. -->
+        <div class="col-md-9">
+            <div class="col-md-12">
+                <div class="row">
+                    <h1>@Model.Title</h1>
+                </div>
+
+                <div class="row">
+                    @{
+                        var group = @DBFactory.DB.Instance.GetGroup(@Model.GroupId);
+
+                        string groupName = "";
+
+                        if (group != null)
+                            groupName = group.Name;
+                    }
+
+                    Kategori: @groupName
+                </div>
+
+                <div class="row">
+                    
+                    Beskrivelse: @Html.Raw(@Model.ShortDescription.FormattedText)
+                </div>
+
+                <div class="row">
+                    <img src="@Model.FinishedMealImage.Image" width="500" height="500" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

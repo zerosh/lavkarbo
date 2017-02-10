@@ -65,6 +65,7 @@
     <Compile Include="Structures\Ingredient.cs" />
     <Compile Include="Structures\Recipies.cs" />
     <Compile Include="Structures\User.cs" />
+    <Compile Include="Structures\Utils\HTMLFormattedTextExtension.cs" />
     <Compile Include="Structures\Utils\ImageExtension.cs" />
   </ItemGroup>
   <ItemGroup>

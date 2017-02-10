@@ -1,4 +1,5 @@
 ﻿using DBFactory.Structures;
+using DBFactory.Structures.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
@@ -8,11 +9,11 @@ namespace DBFactory.Structures
     {
         [Key]
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
         public int GroupId { get; set; }
         public ImageExtension FinishedMealImage { get; set; }
         public bool Published { get; set; }
-        public string ShortDescription { get; set; }
+        public HTMLFormattedTextExtension ShortDescription { get; set; }
 
         public Recipe()
         {
@@ -21,7 +22,7 @@ namespace DBFactory.Structures
 
         public Recipe(string Name, int GroupId)
         {
-            this.Name = Name;
+            this.Title = Name;
             this.GroupId = GroupId;
             FinishedMealImage = new ImageExtension();
         }
