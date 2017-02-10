@@ -29,9 +29,15 @@ namespace NewTestFramework.Controllers
         {
             try
             {
-                recipe.SetImage(Request.Files);
-                DB.Instance.SaveRecipe(recipe);
-                return RedirectToAction("Index");
+                if (Request.Files != null)
+                {
+                    recipe.FinishedMealImage.SaveImage(Request.Files[0]);
+                    DB.Instance.SaveRecipe(recipe);
+
+                    return RedirectToAction("Index");
+                }
+
+                return null;
             }
             catch
             {

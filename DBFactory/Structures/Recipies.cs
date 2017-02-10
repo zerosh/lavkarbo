@@ -1,4 +1,4 @@
-﻿using DBFactory.Structures.Utils;
+﻿using DBFactory.Structures;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
@@ -10,7 +10,8 @@ namespace DBFactory.Structures
         public int ID { get; private set; }
         public string Name { get; set; }
         public int GroupId { get; set; }
-        public byte[] Image { get; set; }
+        public ImageExtension FinishedMealImage { get; set; }
+
         public Recipe()
         {
         }
@@ -19,16 +20,6 @@ namespace DBFactory.Structures
         {
             this.Name = Name;
             this.GroupId = GroupId;
-        }
-
-        public string GetImage()
-        {
-            return DImage.GetImage(this.Image);
-        }
-
-        public void SetImage(HttpFileCollectionBase Files)
-        {
-            this.Image = DImage.CreateImage(Files);
         }
     }
 }
