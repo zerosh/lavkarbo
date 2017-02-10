@@ -35,6 +35,10 @@
                     </th>
 
                     <th>
+                        Publisert
+                    </th>
+
+                    <th>
                         Ingredienser
                     </th>
 
@@ -74,6 +78,10 @@
                         </td>
 
                         <td>
+                            @recipe.Published
+                        </td>
+
+                        <td>
                             @{ 
                                 int count = @DB.Instance.GetIngredients(@recipe.ID, int.MaxValue).Count;
                             }
@@ -82,7 +90,7 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID}, null)
+                            @Html.ActionLink("Edit", "Edit", new { id = @recipe.ID }, null) | @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID }, null)
                         </td>
                     </tr>
                 }

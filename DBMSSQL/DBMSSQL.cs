@@ -22,6 +22,20 @@ namespace DBMSSQL
 
         public int SaveRecipe(Recipe Recipe)
         {
+            // TODO: Temporary dirty hack for updating recipe.
+            var current = GetRecipe(Recipe.ID);
+
+            if (current != null)
+            {
+                current.Name = Recipe.Name;
+                current.Published = Recipe.Published;
+                current.GroupId = Recipe.GroupId;
+                current.ShortDescription = Recipe.ShortDescription;
+
+                context.SaveChanges();
+                return current.ID;
+            }
+
             context.Recipe.Add(Recipe);
             context.SaveChanges();
 

@@ -264,6 +264,7 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\Recipe\Create.cshtml" />
+    <Content Include="Views\Recipe\Edit.cshtml" />
     <None Include="Web.Nicco.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

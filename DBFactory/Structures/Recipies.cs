@@ -7,10 +7,12 @@ namespace DBFactory.Structures
     public class Recipe
     {
         [Key]
-        public int ID { get; private set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public int GroupId { get; set; }
         public ImageExtension FinishedMealImage { get; set; }
+        public bool Published { get; set; }
+        public string ShortDescription { get; set; }
 
         public Recipe()
         {

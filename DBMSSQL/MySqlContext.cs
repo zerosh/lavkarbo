@@ -15,6 +15,7 @@ namespace DBMSSQL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MySqlContext>());
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -23,9 +23,23 @@
             </div>
 
             <div class="form-group">
+                <label class="control-label col-md-2">Kort beskrivelse</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(p => p.ShortDescription)
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="control-label col-md-2">Gruppe</label>
                 <div class="col-md-10">
                     @Html.DropDownListFor(p => p.GroupId, new SelectList(DBFactory.DB.Instance.GetGroups(int.MaxValue), "ID", "Name"), htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Publisert</label>
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(p => p.Published)
                 </div>
             </div>
 
