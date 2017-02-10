@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,8 +9,16 @@ using System.Web;
 
 namespace DBFactory.Structures
 {
-    public class ImageExtension
+    public class ImageExtension : IEnumerable<ImageExtension>
     {
+        List<ImageExtension> imageList = new List<ImageExtension>();
+
+        public ImageExtension this[int index]
+        {
+            get { return imageList[index]; }
+            set { imageList.Insert(index, value); }
+        }
+
         private string image { get; set; }
         public string Image
         {
@@ -59,6 +68,16 @@ namespace DBFactory.Structures
             }
 
             return string.Empty;
+        }
+
+        public IEnumerator<ImageExtension> GetEnumerator()
+        {
+            return imageList.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }
