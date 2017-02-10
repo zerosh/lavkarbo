@@ -33,6 +33,11 @@
                     <th>
                         Bilde
                     </th>
+
+                    <th>
+                        Ingredienser
+                    </th>
+
                     <th>
                         Handling
                     </th>
@@ -65,18 +70,15 @@
                         </td>
 
                         <td>
+                            <img src="@recipe.GetImage()" width="150" height="150" />
+                        </td>
+
+                        <td>
                             @{ 
-                                /*
-                                 * Pase image testing.
-                                 */
-                                string Image = "DefaultImage.png";
-                                if (@recipe.Image != null)
-                                {
-                                    var base64 = Convert.ToBase64String(recipe.Image);
-                                    Image = string.Format("data:image/gif;base64, {0}", base64);
-                                }
+                                int count = @DB.Instance.GetIngredients(@recipe.ID, int.MaxValue).Count;
                             }
-                            <img src="@Image" width="150" height="150" />
+                            
+                            @count
                         </td>
 
                         <td>

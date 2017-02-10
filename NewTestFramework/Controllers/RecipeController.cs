@@ -29,24 +29,7 @@ namespace NewTestFramework.Controllers
         {
             try
             {
-                /*
-                 * Handle image upload.
-                 */ 
-                if (Request.Files.Count > 0)
-                {
-                    var file = Request.Files[0] as HttpPostedFileBase;
-
-                    if (file.ContentLength > 0)
-                    {
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            file.InputStream.CopyTo(ms);
-                            byte[] data = ms.GetBuffer();
-                            recipe.Image = data;
-                        }
-                    }
-                }
-
+                recipe.SetImage(Request.Files);
                 DB.Instance.SaveRecipe(recipe);
                 return RedirectToAction("Index");
             }

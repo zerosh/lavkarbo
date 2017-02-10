@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DBFactory.Structures.Utils;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace DBFactory.Structures
 {
@@ -22,6 +19,16 @@ namespace DBFactory.Structures
         {
             this.Name = Name;
             this.GroupId = GroupId;
+        }
+
+        public string GetImage()
+        {
+            return DImage.GetImage(this.Image);
+        }
+
+        public void SetImage(HttpFileCollectionBase Files)
+        {
+            this.Image = DImage.CreateImage(Files);
         }
     }
 }
