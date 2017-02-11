@@ -12,11 +12,12 @@
     <title></title>
 </head>
 <body>
-    <div>
+    <div class="container">
+        Lag ny gruppe<br />
         @using(@Html.BeginForm("Create", "Group", FormMethod.Post))
         {
             @Html.TextBoxFor(p => p.Name)
-            <input type="submit" />
+            <input type="submit" value="Lagre"/>
         }
     </div>
     <div>

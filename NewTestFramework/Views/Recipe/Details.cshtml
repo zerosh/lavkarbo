@@ -12,53 +12,82 @@
     <title></title>
 </head>
 <body>
-    <div class="row">
-        <!-- Left side -->
-        <div class="col-md-3">
-            <div class="row">
-                <b>Ingredienser</b>
-                <ul>
-                    <li>Egg 6 stk</li>
-                    <li>Vann 2 dl</li>
-                    <li>Salt 2 ts</li>
-                </ul>
-            </div>
-
-            <div class="row">
-                <a href="">Legg til i handlelisten.</a>
-            </div>
-
-            <div class="row">
-                <a href="">Send til venn</a>
-            </div>
-        </div>
-        <!-- Right side. -->
-        <div class="col-md-9">
+    <div class="container">
+        <div class="row">
+            <hr />
             <div class="col-md-12">
-                <div class="row">
-                    <h1>@Model.Title</h1>
-                </div>
-
-                <div class="row">
-                    @{
-                        var group = @DBFactory.DB.Instance.GetGroup(@Model.GroupId);
-
-                        string groupName = "";
-
-                        if (group != null)
-                            groupName = group.Name;
-                    }
-
-                    Kategori: @groupName
-                </div>
-
-                <div class="row">
+                <div class="col-md-3 col-sm-2"><i class="fa fa-heart fa-lg" aria-hidden="true"></i> <a href="#">Favoritt</a></div>
+                <div class="col-md-3 col-sm-2"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> <a href="#">Del til venner</a></div>
+                <div class="col-md-3 col-sm-2"><i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i> <a href="/Cart/Add/@Model.ID">Legg til i handlelisten</a></div>
+                <div class="col-md-3 col-sm-2"><i class="fa fa-print fa-lg" aria-hidden="true"></i> <a href="#">Skriv ut</a></div>
+            </div>
+            <hr />
+            <!-- Left side -->
+            <div class="col-md-3">
+                <div class="col-md-12">
+                    <h2>Ingredienser</h2>
+                    <hr />
                     
-                    Beskrivelse: @Html.Raw(@Model.ShortDescription.FormattedText)
+                    <ul>
+                        <li>Egg 6 stk</li>
+                        <li>Vann 2 dl</li>
+                        <li>Salt 2 ts</li>
+                    </ul>
                 </div>
+            </div>
 
-                <div class="row">
-                    <img src="@Model.FinishedMealImage.Image" width="500" height="500" />
+            <!-- Right side. -->
+            <div class="col-md-9">
+                <div class="col-md-12">
+                        <h2>@Model.Title</h2>
+                        <hr />
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                if (i < @Model.Difficulty)
+                                {
+                                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                                }
+                            }
+                        </div>
+
+                        <div class="col-md-4">
+                            <i class="fa fa-clock-o fa-lg" aria-hidden="true"> @Model.PreparationTime minutter</i>
+                        </div>
+
+                        <div class="col-md-4">
+                            @{
+                                var group = @DBFactory.DB.Instance.GetGroup(@Model.GroupId);
+
+                                string groupName = "";
+
+                                if (group != null)
+                                    groupName = group.Name;
+                            }
+
+                            @groupName
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        @Html.Raw(@Model.ShortDescription.FormattedText)
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        @Html.Raw(@Model.FullDescription.FormattedText)
+                    </div>
+
+                    <div class="row text-center">
+                        <img src="@Model.FinishedMealImage.Image" class="img-responsive"/>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 ﻿using DBFactory;
 using DBFactory.Structures;
+using System.Drawing;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace NewTestFramework.Controllers
@@ -56,8 +58,16 @@ namespace NewTestFramework.Controllers
         // GET: Recipe/Delete/5
         public ActionResult Delete(int id)
         {
-            DB.Instance.DeleteRecipe(id);
+            return View(DB.Instance.GetRecipe(id));
+        }
 
+        [HttpPost]
+        public ActionResult Delete(Recipe recipe)
+        {
+            if (recipe != null)
+            {
+                DB.Instance.DeleteRecipe(recipe.ID);
+            }
             return RedirectToAction("Index");
         }
 

@@ -14,7 +14,9 @@ namespace DBFactory.Structures
         public ImageExtension FinishedMealImage { get; set; }
         public bool Published { get; set; }
         public HTMLFormattedTextExtension ShortDescription { get; set; }
-
+        public HTMLFormattedTextExtension FullDescription { get; set; }
+        public int Difficulty { get; set; }
+        public int PreparationTime { get; set; }
         public Recipe()
         {
             FinishedMealImage = new ImageExtension();

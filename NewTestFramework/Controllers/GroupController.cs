@@ -15,12 +15,6 @@ namespace NewTestFramework.Controllers
             return View();
         }
 
-        // GET: Group/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Group/Create
         public ActionResult Create()
         {
@@ -37,7 +31,16 @@ namespace NewTestFramework.Controllers
         // GET: Group/Delete/5
         public ActionResult Delete(int id)
         {
-            DBFactory.DB.Instance.DeleteGroup(id);
+            //DBFactory.DB.Instance.DeleteGroup(id);
+            //return RedirectToAction("Index");
+            return View(DBFactory.DB.Instance.GetGroup(id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Group group)
+        {
+
+            DBFactory.DB.Instance.DeleteGroup(group.Id);
             return RedirectToAction("Index");
         }
     }

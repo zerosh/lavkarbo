@@ -1,0 +1,26 @@
+﻿@model DBFactory.Structures.Recipe
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        Er du sikker på at du vil slette <b>@Model.Title</b> ?
+
+        @using (Html.BeginForm("Delete", "Recipe"))
+        {
+            <input type="submit" value="Slett"/>
+        }
+
+        @Html.ActionLink("Tilbake", "Index")
+    </div>
+</body>
+</html>

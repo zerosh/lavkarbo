@@ -14,14 +14,13 @@
 </head>
 <body>
     <div>
-        <a href="Recipe/Create">Lag ny </a>
-        
         <table class="table">
             <thead>
                 <tr>
                     <th>
                         Unique Id
                     </th>
+
                     <th>
                         Tittel
                     </th>
@@ -35,11 +34,19 @@
                     </th>
 
                     <th>
-                        Publisert
+                        Vis for alle
                     </th>
 
                     <th>
                         Ingredienser
+                    </th>
+
+                    <th>
+                        Vanskelighetsgrad
+                    </th>
+
+                    <th>
+                        Tid i min.
                     </th>
 
                     <th>
@@ -78,7 +85,11 @@
                         </td>
 
                         <td>
-                            @recipe.Published
+                            @{ 
+                                string publish = @recipe.Published == true ? "Ja" : "Nei";
+                            }
+
+                            @publish
                         </td>
 
                         <td>
@@ -87,6 +98,14 @@
                             }
                             
                             @count
+                        </td>
+
+                        <td>
+                            @recipe.Difficulty
+                        </td>
+
+                        <td>
+                            @recipe.PreparationTime
                         </td>
 
                         <td>

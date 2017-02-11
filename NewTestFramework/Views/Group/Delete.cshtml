@@ -1,0 +1,26 @@
+﻿@model DBFactory.Structures.Group
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        Er du sikker på at du vil slette <b>@Model.Name</b> gruppen.
+
+        @using (Html.BeginForm("Delete", "Group"))
+        {
+            <input type="submit" value="Slett" />
+        }
+
+        @Html.ActionLink("Tilbake", "Index")
+    </div>
+</body>
+</html>

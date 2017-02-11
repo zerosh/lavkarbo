@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Cart";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+    
+        @{
+            var cart = ((List<int>)Session["cart"]);
+            int RecipeCount = cart != null ? cart.Count : 0;
+        }
+
+        <div class="row">
+            @if (RecipeCount > 0)
+            {
+                @Html.ActionLink("Tøm handlelisten", "DeleteAll")
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @if (cart != null)
+                {
+                    if (cart.Count == 0)
+                    {
+                        @: Ingen oppskrifter i handlelisten.
+                    }
+                    else
+                    {
+                        foreach (var recipeId in cart)
+                        {
+                            var recipe = DBFactory.DB.Instance.GetRecipe(recipeId);
+
+                            <div class="row">
+                                @recipe.Title @Html.ActionLink("Slett", "Remove", new { id = @recipeId })
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            
+            <div class="col-md-8">
+                <div class="col-md-12">6 Egg</div>
+                <div class="col-md-12">2 Purre</div>
+                <div class="col-md-12">2 liter Melk</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

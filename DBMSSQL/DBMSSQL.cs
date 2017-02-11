@@ -39,7 +39,9 @@ namespace DBMSSQL
                 current.Published = Recipe.Published;
                 current.GroupId = Recipe.GroupId;
                 current.ShortDescription = Recipe.ShortDescription;
-
+                current.FullDescription = Recipe.FullDescription;
+                current.Difficulty = Recipe.Difficulty;
+                current.PreparationTime = Recipe.PreparationTime;
                 context.SaveChanges();
                 return current.ID;
             }
