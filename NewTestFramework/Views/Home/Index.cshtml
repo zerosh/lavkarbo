@@ -42,53 +42,49 @@
 
 <div class="container text-center">
     @foreach (var recipe in DB.Instance.GetRecipesPublishedDecendingOrder(5))
-                            {
-                                <a href="Recipe/Details/@recipe.ID">
-                                    <div class="container">
-                                        <div class="col-md-12 row">
-                                            <div class="col-md-12 col-sm-4">
-                                                <div class="col-sm-12 col-md-12 thumbnail text-center">
-                                                    <img src="@recipe.FinishedMealImage.Image" class="img-responsive text-center" style="width:100%">
-                                                    <div class="caption">
-                                                        <h4>@recipe.Title</h4>
-                                                        @for (int i = 0; i < 5; i++)
-                                                        {
-                                                            if (i < @recipe.Difficulty)
-                                                            {
-                                                                <i class="fa fa-star icon" aria-hidden="true"></i>
-                                                            }
-                                                            else
-                                                            {
-                                                                <i class="fa fa-star-o icon" aria-hidden="true"></i>
-                                                            }
-                                                        }
-                                                        <div class="row">
-                                                            <i class="fa fa-clock-o icon" aria-hidden="true"> @recipe.PreparationTime min </i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <hr />
-                            }
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h2>Artikkel tittel</h2>
-                                <p>
-                                    Kort intro for artikkel tekst her.
-                                </p>
-                                <p><a class="btn btn-default" href="">Les mer&raquo;</a></p>
-                            </div>
-                            <div class="col-md-6">
-                                <h2>Artikkel tittel</h2>
-                                <p>
-                                    Kort intro for artikkel tekst her.
-                                </p>
-                                <p><a class="btn btn-default" href="">Les mer&raquo;</a></p>
+    {
+        <a href="Recipe/Details/@recipe.ID">
+            <div class="container">
+                <div class="col-md-12 row">
+                    <div class="col-md-12 col-sm-4">
+                        <div class="col-sm-12 col-md-12 thumbnail text-center">
+                            <img src="@recipe.FinishedMealImage.Image" class="img-responsive text-center" style="width:100%">
+                            <div class="caption">
+                                <h4>@recipe.Title</h4>
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    if (i < @recipe.Difficulty)
+                                    {
+                                        <i class="fa fa-star icon" aria-hidden="true"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-star-o icon" aria-hidden="true"></i>
+                                    }
+                                }
+                                
+                                <div class="row">
+                                    <i class="fa fa-clock-o icon" aria-hidden="true"> @recipe.PreparationTime min </i>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    <hr />
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Artikkel tittel</h2>
+        <p>Kort intro for artikkel tekst her.</p>
+        <p><a class="btn btn-default" href="">Les mer&raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Artikkel tittel</h2>
+        <p>Kort intro for artikkel tekst her.</p>
+        <p><a class="btn btn-default" href="">Les mer&raquo;</a></p>
+    </div>
+</div>

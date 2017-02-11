@@ -38,7 +38,7 @@
                             var recipe = DBFactory.DB.Instance.GetRecipe(recipeId);
 
                             <div class="row">
-                                @recipe.Title @Html.ActionLink("Slett", "Remove", new { id = @recipeId })
+                                @Html.ActionLink(@recipe.Title, "Details", "Recipe", new { id = @recipe.ID }) | @Html.ActionLink("Slett", "Remove", new { id = @recipeId })
                             </div>
                         }
                     }
