@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <div class="col-md-12 col-xs-12 col-md-12">
+            <h2>Ingrediens oversikt</h2>
+        </div>
+        <hr />
+        <table class="col-md-12 col-sm-12 col-xs-12">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Navn</th>
+                    <th>Handling</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ingredient in DBFactory.DB.Instance.GetIngredients(int.MaxValue))
+                {
+                    <tr>
+                        <th>@ingredient.Id</th>
+                        <th>@ingredient.Name</th>
+                        <th>@Html.ActionLink("Slett", "Delete", new { id = ingredient.Id })</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

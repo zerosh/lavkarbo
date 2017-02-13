@@ -11,19 +11,15 @@ namespace DBFactory.Structures
     {
         [Key]
         public int Id { get; set; }
-        public int RecipeId { get; set; }
         public string Name { get; set; }
-        public int Amount { get; set; }
 
         public Ingredient()
         {
         }
 
-        public Ingredient(int RecipeId, string Name, int Amount)
+        public Ingredient(string Name)
         {
-            this.RecipeId = RecipeId;
             this.Name = Name;
-            this.Amount = Amount;
         }
     }
 }

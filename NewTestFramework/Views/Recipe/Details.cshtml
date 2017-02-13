@@ -29,24 +29,26 @@
                 </ul>
                 <div class="col-md-12 text-center">
                     <div class="col-md-3 col-sm-2"><i class="fa fa-heart fa-lg" aria-hidden="true"></i> <a href="#">Favoritt</a></div>
-                    <div class="col-md-3 col-sm-2"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> <a href="#">Del til venner</a></div>
-                    <div class="col-md-3 col-sm-2"><i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i> <a href="/Cart/Add/@Model.ID">Legg til i handlelisten</a></div>
+                    <div class="col-md-3 col-sm-2"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> <a href="#">Del med venner</a></div>
+                    <div class="col-md-3 col-sm-2"><i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i> <a href="/Cart/Add/@Model.ID">Legg i handlelisten</a></div>
                     <div class="col-md-3 col-sm-2"><i class="fa fa-print fa-lg" aria-hidden="true"></i> <a href="javascript:window.print()">Skriv ut</a></div>
                 </div>
                 <hr />
             </div>
             <!-- Left side -->
             <div class="col-md-3">
+                <!-- Ingredients start -->
                 <div class="col-md-12">
                     <h2>Ingredienser</h2>
-                    <hr />
-                    
+
                     <ul>
-                        <li>Egg 6 stk</li>
-                        <li>Vann 2 dl</li>
-                        <li>Salt 2 ts</li>
+                        <li>Egg 3 &#189; stk</li>
+                        <li>Vann 2 &#189; dl</li>
+                        <li>Salt 1 &#189; ts </li>
                     </ul>
                 </div>
+                <!-- Ingredients stop. -->
+
             </div>
 
             <!-- Right side. -->
@@ -93,6 +95,18 @@
                         <img src="@Model.FinishedMealImage.Image" class="img-responsive"/>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+        <hr />
+
+        <div class="container hidden-print">
+            <div class="row"><h2>Relaterte oppskrifter</h2></div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-6"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
+                <div class="col-md-4 col-sm-4 col-xs-6"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
+                <div class="col-md-4 col-sm-4 col-xs-6"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
             </div>
         </div>
     </div>

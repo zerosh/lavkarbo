@@ -12,83 +12,118 @@
     <title></title>
 </head>
 <body>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-md-2">Ny oppskrift</label>
-        </div>
-        @using (Html.BeginForm("Create", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <div class="form-group">
-                <label class="control-label col-md-2">Tittel</label>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(p => p.Title)
-                </div>
-            </div>
+ 
+    <!-- New content -->
 
-            <div class="form-group">
-                <label class="control-label col-md-2">Vanskelighetsgrad</label>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(p => p.Difficulty)
-                </div>
-            </div>
+<div id="rootWizard" class="container">
+@using (Html.BeginForm("Create", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+        <ul class="nav nav-pills">
+            <li class="active">
+                <a href="#1a" data-toggle="tab">Intro</a>
+            </li>
+            <li>
+                <a href="#2a" data-toggle="tab">Beskrivelse</a>
+            </li>
+            <li>
+                <a href="#3a" data-toggle="tab">Ingredienser</a>
+            </li>
+            <li>
+                <a href="#4a" data-toggle="tab">Bilder</a>
+            </li>
+            <li>
+                <a href="#5a" data-toggle="tab">Fullfør</a>
+            </li>
+        </ul>
 
-            <div class="form-group">
-                <label class="control-label col-md-2">Tid i minutter</label>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(p => p.PreparationTime)
+        <div class="tab-content clearfix">
+            <div class="tab-pane active" id="1a">
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tittel</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(p => p.Title, new { placeholder = "Toast med avokado" })
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-2">Kort beskrivelse</label>
-                <div class="col-md-10">
-                    @Html.TextAreaFor(p => p.ShortDescription.Text)
+                <div class="form-group">
+                    <label class="control-label col-md-2">Vanskelighetsgrad</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(p => p.Difficulty)
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-2">Full beskrivelse</label>
-                <div class="col-md-10">
-                    @Html.TextAreaFor(p => p.FullDescription.Text)
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tid i minutter</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(p => p.PreparationTime)
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="control-label col-md-2">Gruppe</label>
-                <div class="col-md-10">
-                    @Html.DropDownListFor(p => p.GroupId, new SelectList(DBFactory.DB.Instance.GetGroups(int.MaxValue), "ID", "Name"), htmlAttributes: new { @class = "control-label col-md-2" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Bilde</label>
-                <div class="col-md-10">
-                    <img id="ImageUploadPreview" src="#" width="200" height="200" />
-                    <input type="file" class="form-control filestyle" name="SomeFile" onchange="reloadPreviewImage(event)">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Vis artikkel for alle</label>
-                <div class="col-md-10">
-                    @Html.CheckBoxFor(p => p.Published)
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="col-md-6"></div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="submit" value="Lagre" />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Gruppe</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(p => p.GroupId, new SelectList(DBFactory.DB.Instance.GetGroups(int.MaxValue), "ID", "Name"), htmlAttributes: new { @class = "control-label col-md-2" })
                     </div>
                 </div>
             </div>
-           
-        }
-    </div>
+
+            <div class="tab-pane" id="2a">
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Kort beskrivelse</label>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(p => p.ShortDescription.Text, new { placeholder = "Lyst på noe skikkelig godt? Hva med toast med pulled pork, cheddar og avokado?", rows = 5, cols = 20, style = "width:100%;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Hele beskrivelse</label>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(p => p.FullDescription.Text, new { placeholder = "1. Varm pulled pork etter anvisning på pakken. Riv kjøttet ved hjelp av to gafler. Bland kjøttet med bbq saus. \n\n2.Skjær hver avokado i to på langs, og fjern steinen. \n\n3. Skrap kjøttet ut av skallet med en skje, og ha det i en bolle. Mos avokadokjøttet med en gaffel, men la det være litt klumper i. Rør inn finhakket koriander, salt og limesaft. Smak deg gjerne litt frem.", rows = 10, cols = 20, style = "width:100%;" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="3a">
+                <hr />
+            </div>
+
+            <div class="tab-pane" id="4a">
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Bilde</label>
+                    <div class="col-md-12 col-xs-12">
+                        <img id="ImageUploadPreview" src="#" width="200" height="200" />
+                        <input type="file" class="form-control filestyle" name="SomeFile" onchange="reloadPreviewImage(event)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="5a">
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Vis artikkel for alle</label>
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(p => p.Published)
+                    </div>
+                </div>
+
+                <div id="wizard" class="col-md-12">
+                    <input type="submit" value="Lagre" class="btn btn-danger pull-right" />
+                </div>
+            </div>
+        </div>
+
+        <ul class="pager wizard">
+            <li class="previous"><a href="javascript:;">Tilbake</a></li>
+            <li class="next"><a href="javascript:;">Neste</a></li>
+        </ul>
+}
+</div>
+
 </body>
 </html>
-
 
 @section Scripts
 {
@@ -99,5 +134,10 @@
         var reloadPreviewImage = function (event) {
             $("#ImageUploadPreview").attr('src', URL.createObjectURL(event.target.files[0]));
         };
+
+        $(document).ready(function () {
+            $('#rootWizard').bootstrapWizard();
+        });
+
     </script>
 }

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using DBFactory;
 using DBRavenImplementation;
+using System.Collections.Generic;
 
 namespace NewTestFramework.Controllers
 {
@@ -8,22 +9,25 @@ namespace NewTestFramework.Controllers
     {
         public ActionResult Index()
         {
+            //// Store
+            //var id = Query.StoreUserInfo(new DUser() { Name = "Whatever" });
+
+            //// Load
+            //var user = Query.LoadUserInfo(id);
+
+            //// Update
+            //user.Name = "random bull";
+            //Query.StoreUserInfo(user);
+
+            //// Delete
+            //Query.DeleteUserInfo(user);
+
             return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            DB.Instance.SaveGroup(new DBFactory.Structures.Group("Bakst"));
-
-            var cake = new DBFactory.Structures.Recipe("Kake", 0);
-            int id = DB.Instance.SaveRecipe(cake);
-
-            var recipe = DB.Instance.GetRecipe(id);
-            
-            var ingredient = new DBFactory.Structures.Ingredient(id, "Egg", 6);
-            DB.Instance.SaveIngredient(ingredient);
 
             return View();
         }

@@ -1,0 +1,82 @@
+﻿
+@model NewTestFramework.Models.AddRecipeIngredientViewModel
+@{
+    ViewBag.Title = "Ingredients";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">@Html.ActionLink("Se oppskrift", "Details/" + Model.RecipeId, "Recipe")</div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+    <div class="form-horizontal">
+        <div class="col-md-12 col-sm-12">
+            <h2>Oppskrift ingredienser</h2>
+        </div>
+        <hr />
+        <div class="container">
+            <ul>
+                @foreach (var ingredient in DBFactory.DB.Instance.GetRecipeIngredients(Model.RecipeId, int.MaxValue))
+                {
+                    var ingredientData = DBFactory.DB.Instance.GetIngredient(ingredient.IngredientId);
+                    string ingredientName = ingredientData != null ? ingredientData.Name : "ERROR";
+
+                    <li>@ingredientName - @ingredient.Amount @Html.ActionLink("Slett", "DeleteIngredient", new { id = ingredient.Id, recipeId = Model.RecipeId })</li>
+                }
+            </ul>
+        </div>
+        <hr />
+
+        @using (Html.BeginForm("Ingredient", "Recipe", FormMethod.Post))
+        {
+            @Html.HiddenFor(p => p.RecipeId)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Ingrediens</label>
+                <div class="col-md-10">
+                    @Html.AutocompleteFor(p => p.IngredientName, "Autocomplete", "Ingredient")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Antall</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.Amount)
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <input class="col-md-12 col-xs-12" type="submit" value="Legg til ingrediens"/>
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $('*[data-autocomplete-url]').each(function () {
+            $(this).autocomplete({
+                source: $(this).data("autocomplete-url"),
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                }
+            });
+      });
+    </script>
+}

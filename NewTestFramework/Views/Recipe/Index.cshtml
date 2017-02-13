@@ -68,16 +68,12 @@
                         <td>
                             @{ 
                                 var group = DB.Instance.GetGroup(recipe.GroupId);
-
-                                string GroupName = "";
-
-                                if (group != null)
-                                {
-                                    GroupName = group.Name;
-                                }
                             }
 
-                            @GroupName
+                            @if (group != null)
+                            {
+                                @Html.ActionLink(@group.Name, "ViewGroup", new { id = group.Id})
+                            }
                         </td>
 
                         <td>
@@ -93,11 +89,7 @@
                         </td>
 
                         <td>
-                            @{ 
-                                int count = @DB.Instance.GetIngredients(@recipe.ID, int.MaxValue).Count;
-                            }
-                            
-                            @count
+                            0
                         </td>
 
                         <td>
@@ -109,6 +101,7 @@
                         </td>
 
                         <td>
+                            @Html.ActionLink("Ingredienser", "Ingredient", new { id = @recipe.ID }, null)
                             @Html.ActionLink("Se oppskrift", "Details", new { id = @recipe.ID }, null)
                             | @Html.ActionLink("Rediger", "Edit", new { id = @recipe.ID }, null) 
                             | @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID }, null)

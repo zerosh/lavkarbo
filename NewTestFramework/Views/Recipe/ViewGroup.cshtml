@@ -1,0 +1,29 @@
+﻿@using DBFactory.Structures
+@model List<Recipe>
+
+@{
+    ViewBag.Title = "ViewGroup";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <ul>
+            @foreach (var recipe in Model)
+            {
+                <li>@Html.ActionLink(recipe.Title, "Details", new { id = recipe.ID }) <br /></li>
+            }
+        </ul>
+
+        <div class="container">
+            @Html.ActionLink("Tilbake", "Group")
+        </div>
+    </div>
+</body>
+</html>

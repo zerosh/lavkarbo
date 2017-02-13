@@ -243,3 +243,17 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/NewTestFramework/Content/themes/base
+/NewTestFramework/Content/jquery-ui.min.css
+/NewTestFramework/Content/jquery-ui.css
+/NewTestFramework/Content/bootstrap.min.css.map
+/NewTestFramework/Content/bootstrap.css.map
+/NewTestFramework/Content/bootstrap-theme.min.css.map
+/NewTestFramework/Content/bootstrap-theme.css.map
+/NewTestFramework/fonts/glyphicons-halflings-regular.woff2
+/NewTestFramework/Scripts/jquery.bootstrap.wizard.min.js.map
+/NewTestFramework/Scripts/jquery.bootstrap.wizard.min.js
+/NewTestFramework/Scripts/jquery.bootstrap.wizard.js.map
+/NewTestFramework/Scripts/jquery.bootstrap.wizard.js
+/NewTestFramework/Scripts/jquery-ui-1.11.4.min.js
+/NewTestFramework/Scripts/jquery-ui-1.11.4.js
