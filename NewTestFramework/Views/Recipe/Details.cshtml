@@ -24,7 +24,7 @@
             <div class="hidden-print">
                 <ul class="breadcrumb">
                     <li>@Html.ActionLink("LavkarboFokus", "Index", "Home")</li>
-                    <li>@Html.ActionLink(groupName, "Index", "Home")</li>
+                    <li>@Html.ActionLink(groupName, "ViewGroup", "Recipe",new { Id  = group.Id})</li>
                     <li>@Model.Title</li>
                 </ul>
                 <div class="col-md-12 text-center">
@@ -35,9 +35,10 @@
                 </div>
                 <hr />
             </div>
+
             <!-- Left side -->
             <div class="col-md-3">
-                <!-- Ingredients start -->
+                <!-- Ingredients-->
                 <div class="col-md-12">
                     <h2>Ingredienser</h2>
 
@@ -46,8 +47,7 @@
                         <li>Vann 2 &#189; dl</li>
                         <li>Salt 1 &#189; ts </li>
                     </ul>
-                </div>
-                <!-- Ingredients stop. -->
+                </div><!-- /Ingredients. -->
 
             </div>
 
@@ -104,9 +104,9 @@
         <div class="container hidden-print">
             <div class="row"><h2>Relaterte oppskrifter</h2></div>
             <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-6"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
-                <div class="col-md-4 col-sm-4 col-xs-6"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
-                <div class="col-md-4 col-sm-4 col-xs-6"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
+                <div class="col-md-4 col-sm-4 col-xs-4"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
+                <div class="col-md-4 col-sm-4 col-xs-4"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
+                <div class="col-md-4 col-sm-4 col-xs-4"><img src="@Model.FinishedMealImage.Image" class="img-responsive" /></div>
             </div>
         </div>
     </div>

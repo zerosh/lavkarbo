@@ -9,48 +9,144 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <script>
+        var text = ["Søk etter oppskrift","Eks: middag uten salt uten løk", "Skriv inn en eller flere ingredienser"];
+        var txt = text[0];
+        var timeOut;
+        var char = 0;
+        var currentTextSelection = 0;
+
+        function SelectNextText() {
+            currentTextSelection++;
+            if (currentTextSelection >= text.length)
+                currentTextSelection = 0;
+
+            char = 0;
+            txt = text[currentTextSelection];
+        }
+
+        (function typeIt() {
+
+            var humanize = Math.round(Math.random() * (100 - 40)) + 40;
+            timeOut = setTimeout(function () {
+                char++;
+                var type = txt.substring(0, char);
+                $('.main-search').attr('placeholder', type + '|');
+                typeIt();
+
+                if (char == txt.length) {
+                    //clearTimeout(timeOut);
+
+                    setTimeout(function () {
+                        SelectNextText();
+                    }, 2000);
+                }
+
+            }, humanize);
+        }());
+
+    </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
 
-                @Html.ActionLink("Hovedsiden", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                    <i class="fa fa-search" style="color:white;" aria-hidden="true"></i>
+                </button>
+
+                <div type="button" class="navbar-toggle" data-toggle="collapse" data-target="#group">
+                    <div class="row center-block">
+                        <i class="fa fa-list-ol" style="color:white;" aria-hidden="true"></i>
+                        @*<a href="/Recipe/Group/" class="fa fa-list-ol" style="color:white;" aria-hidden="true"></a>*@
+                    </div>
+                </div>
+
+                <div class="navbar-brand">
+                    <div class="row center-block">
+                        <a href="/" class="fa fa-home" style="color:white;" aria-hidden="true"></a>
+                    </div>
+                </div>
+
+                @*@Html.ActionLink("Lavkarbo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gruppe<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Ny", "Create", "Group")</li>
-                            <li>@Html.ActionLink("Liste", "Index", "Group")</li>
-                        </ul>
-                    </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Oppskrift<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Ny", "Create", "Recipe")</li>
-                            <li>@Html.ActionLink("Liste", "Index", "Recipe")</li>
-                        </ul>
-                    </li>
+            <!-- Search bar-->
+            <div class="collapse navbar-collapse" id="search">
+                <form class="navbar-form center-block" role="search">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <input type="text" class="form-control main-search">
+                            <button class="btn btn-default" type="button">Søk</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingrediens<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Ny", "Create", "Ingredient")</li>
-                            <li>@Html.ActionLink("Oversikt", "Index", "Ingredient")</li>
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("Handleliste", "Index", "Cart")</li>
+            <!-- Group navigation -->
+            <div class="navbar-collapse collapse" id="group">
+                <ul class="nav navbar-nav hidden-md hidden-lg hidden-sm">
+                    @foreach (var group in DBFactory.DB.Instance.GetGroups(int.MaxValue))
+                    {
+                        <li class="center-block text-center"><a href="/Recipe/ViewGroup/@group.Id">@group.Name</a></li>
+                        //<li>@Html.ActionLink(group.Name, "Recipe", "ViewGroup", new { Id = group.Id })</li>
+                    }
                 </ul>
-
-                @Html.Partial("_LoginPartial")
             </div>
-        </div>
+                    <!-- Main navigation -->
+                    <div class="navbar-collapse collapse" id="navigation">
+                        <ul class="nav navbar-nav">
+                            @*<li class="dropdown">
+                                <div class="col-md-12">
+                                    <input type="text" />
+                                    <a class="fa fa-search" style="color:white;" aria-hidden="true" href="#"></a>
+                                </div>
+                            </li>*@
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Oppskrifter<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    @foreach (var group in DBFactory.DB.Instance.GetGroups(int.MaxValue))
+                                    {
+                                        <li><a href="/Recipe/ViewGroup/@group.Id">@group.Name</a></li>
+                                        //<li>@Html.ActionLink(group.Name, "Recipe", "ViewGroup", new { Id = group.Id })</li>
+                                    }
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gruppe<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Ny", "Create", "Group")</li>
+                                    <li>@Html.ActionLink("Liste", "Index", "Group")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Oppskrift<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Ny", "Create", "Recipe")</li>
+                                    <li>@Html.ActionLink("Liste", "Index", "Recipe")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingrediens<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Ny", "Create", "Ingredient")</li>
+                                    <li>@Html.ActionLink("Oversikt", "Index", "Ingredient")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Handleliste", "Index", "Cart")</li>
+                        </ul>
+
+                        @Html.Partial("_LoginPartial")
+                    </div>
+            </div>
     </div>
     <div class="container body-content">
         @RenderBody()

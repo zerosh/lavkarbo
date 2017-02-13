@@ -1,6 +1,8 @@
 ﻿using DBFactory;
 using DBFactory.Structures;
 using NewTestFramework.Models;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Web.Helpers;
@@ -110,14 +112,9 @@ namespace NewTestFramework.Controllers
             return View(DB.Instance.GetRecipe(Id));
         }
 
-        public ActionResult Group()
-        {
-            return View(DB.Instance.GetGroups(int.MaxValue));
-        }
-
         public ActionResult ViewGroup(int Id)
         {
-            return View(DB.Instance.GetRecipesFromGroup(Id));
+            return View(DB.Instance.GetRecipesFromGroup(Id).OrderByDescending(p => p.ID).ToList());
         }
     }
 }

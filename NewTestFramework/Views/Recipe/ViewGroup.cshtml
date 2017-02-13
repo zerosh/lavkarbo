@@ -13,17 +13,33 @@
     <title></title>
 </head>
 <body>
+    <hr />
     <div>
-        <ul>
+        <div class="container col-xs-12">
             @foreach (var recipe in Model)
             {
-                <li>@Html.ActionLink(recipe.Title, "Details", new { id = recipe.ID }) <br /></li>
-            }
-        </ul>
+                <a href="/Recipe/Details/@recipe.ID">
+                    <div class="col-md-4 text-center">
+                        <img src="@recipe.FinishedMealImage.Image" width="200" height="200" />
+                        <h3>@recipe.Title</h3>
 
-        <div class="container">
-            @Html.ActionLink("Tilbake", "Group")
-        </div>
+                        <div>
+                            @for (int i = 0; i < @recipe.Difficulty; i++)
+                            {
+                                if (i < @recipe.Difficulty)
+                                {
+                                    <i class="fa fa-star icon" aria-hidden="true"></i>
+                                }
+                            }
+                        </div>
+                        @*
+    @Html.Raw(@recipe.ShortDescription.FormattedText)
+                        *@
+                        <hr />
+                    </div>
+                </a>
+            }
+        </div> 
     </div>
 </body>
 </html>

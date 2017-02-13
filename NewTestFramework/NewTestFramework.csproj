@@ -329,7 +329,6 @@
     <Content Include="Views\Ingredient\Index.cshtml" />
     <Content Include="Views\Ingredient\Create.cshtml" />
     <Content Include="Views\Recipe\Ingredient.cshtml" />
-    <Content Include="Views\Recipe\Group.cshtml" />
     <Content Include="Views\Recipe\ViewGroup.cshtml" />
     <None Include="Web.Nicco.config">
       <DependentUpon>Web.config</DependentUpon>
