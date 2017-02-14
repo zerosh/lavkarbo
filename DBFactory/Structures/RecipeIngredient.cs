@@ -69,10 +69,9 @@ namespace DBFactory.Structures
         {
         }
 
-        public RecipeIngredient(int IngredientId, int RecipeId, float Amount, RecipeMesurement Mesurement)
+        public RecipeIngredient(int IngredientId, float Amount, RecipeMesurement Mesurement)
         {
             this.IngredientId = IngredientId;
-            this.RecipeId = RecipeId;
             this.Amount = Amount;
             this.Mesurement = Mesurement;
         }

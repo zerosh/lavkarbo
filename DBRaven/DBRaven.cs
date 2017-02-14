@@ -187,33 +187,6 @@ namespace DBRavenImplementation
             }
         }
 
-        public int SaveRecipeIngredient(RecipeIngredient ingredient)
-        {
-            using (IDocumentSession session = RavenStore.Store.OpenSession())
-            {
-                session.Store(ingredient);
-                session.SaveChanges();
-            }
-
-            return -1;
-        }
-
-        public List<RecipeIngredient> GetRecipeIngredients(int RecipeId, int Count)
-        {
-            using (IDocumentSession session = RavenStore.Store.OpenSession())
-            {
-                return session.Query<RecipeIngredient>().Where(p => p.RecipeId == RecipeId).Take(Count).ToList();
-            }
-        }
-
-        public RecipeIngredient GetRecipeIngredient(int Id)
-        {
-            using (IDocumentSession session = RavenStore.Store.OpenSession())
-            {
-                return session.Load<RecipeIngredient>(Id);
-            }
-        }
-
         public void DeleteRecipeIngredient(int Id)
         {
             using (IDocumentSession session = RavenStore.Store.OpenSession())

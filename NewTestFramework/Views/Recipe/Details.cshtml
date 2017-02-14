@@ -4,11 +4,6 @@
     ViewBag.Title = Model.Title;
 
     var group = @DBFactory.DB.Instance.GetGroup(@Model.GroupId);
-
-    string groupName = "";
-
-    if (group != null)
-        groupName = group.Name;
 }
 
 <!DOCTYPE html>
@@ -23,14 +18,14 @@
         <div class="container">
             <div class="hidden-print">
                 <ul class="breadcrumb">
-                    <li>@Html.ActionLink("LavkarboFokus", "Index", "Home")</li>
-                    <li>@Html.ActionLink(groupName, "ViewGroup", "Recipe",new { Id  = group.Id})</li>
+                    <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
+                    <li><a href="/Recipe/ViewGroup/@group.Id">@group.Name</a></li>
                     <li>@Model.Title</li>
                 </ul>
                 <div class="col-md-12 text-center">
-                    <div class="col-md-3 col-sm-2"><i class="fa fa-heart fa-lg" aria-hidden="true"></i> <a href="#">Favoritt</a></div>
+                    @*<div class="col-md-3 col-sm-2"><i class="fa fa-heart fa-lg" aria-hidden="true"></i> <a href="#">Favoritt</a></div>
                     <div class="col-md-3 col-sm-2"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> <a href="#">Del med venner</a></div>
-                    <div class="col-md-3 col-sm-2"><i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i> <a href="/Cart/Add/@Model.ID">Legg i handlelisten</a></div>
+                    <div class="col-md-3 col-sm-2"><i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i> <a href="/Cart/Add/@Model.ID">Legg i handlelisten</a></div>*@
                     <div class="col-md-3 col-sm-2"><i class="fa fa-print fa-lg" aria-hidden="true"></i> <a href="javascript:window.print()">Skriv ut</a></div>
                 </div>
                 <hr />
@@ -42,11 +37,22 @@
                 <div class="col-md-12">
                     <h2>Ingredienser</h2>
                     <ul>
-                        @foreach (var recipeIngredient in DBFactory.DB.Instance.GetRecipeIngredients(Model.ID, int.MaxValue))
+                        @foreach (var ingredient in Model.Ingredients)
+                        {
+                            var ingredientType = DBFactory.DB.Instance.GetIngredient(ingredient.IngredientId);
+
+                            if (ingredientType != null)
+                            {
+                                <li>@ingredient.Amount @ingredient.GetMesurementType() @ingredientType.Name </li>
+                            }
+                        }
+
+                        @*@foreach (var recipeIngredient in DBFactory.DB.Instance.GetRecipeIngredients(Model.ID, int.MaxValue))
                         {
                             var ingredient = @DBFactory.DB.Instance.GetIngredient(@recipeIngredient.IngredientId);
                             <li>@recipeIngredient.Amount @recipeIngredient.GetMesurementType() @ingredient.Name</li>
-                        }
+                        }*@
+
                         @*<li>Egg 3 &#189; stk</li>
                         <li>Vann 2 &#189; dl</li>
                         <li>Salt 1 &#189; ts </li>*@
@@ -81,7 +87,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            @groupName
+                            @group.Name
                         </div>
                     </div>
                     <hr />

@@ -36,7 +36,10 @@
                             @group.Id
                         </td>
                         <td>
-                            @group.Name
+
+                            @*@Html.ActionLink(@group.Name, "ViewGroup", "Recipe", new { id = group.Id })*@
+                            <a href="/Recipe/ViewGroup/@group.Id">@group.Name</a>
+                            
                         </td>
                         <td>
                             @Html.ActionLink("Slett", "Delete", new { id = group.Id }, null)

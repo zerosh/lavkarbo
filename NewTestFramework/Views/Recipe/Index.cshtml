@@ -18,10 +18,6 @@
             <thead>
                 <tr>
                     <th>
-                        Unique Id
-                    </th>
-
-                    <th>
                         Tittel
                     </th>
 
@@ -60,10 +56,7 @@
                 {
                     <tr>
                         <td>
-                            @recipe.ID
-                        </td>
-                        <td>
-                            @recipe.Title
+                            @Html.ActionLink(@recipe.Title, "Details", new { id = @recipe.ID }, null)
                         </td>
                         <td>
                             @{ 
@@ -89,7 +82,7 @@
                         </td>
 
                         <td>
-                            0
+                            @recipe.Ingredients.Count
                         </td>
 
                         <td>
@@ -101,10 +94,13 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Ingredienser", "Ingredient", new { id = @recipe.ID }, null)
-                            @Html.ActionLink("Se oppskrift", "Details", new { id = @recipe.ID }, null)
-                            | @Html.ActionLink("Rediger", "Edit", new { id = @recipe.ID }, null) 
-                            | @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID }, null)
+                            <div class="row">@Html.ActionLink("Ingredienser", "Ingredient", new { id = @recipe.ID }, null)</div>
+                            <div class="row">@Html.ActionLink("Rediger", "Edit", new { id = @recipe.ID }, null) </div>
+                            <div class="row">@Html.ActionLink("Slett", "Delete", new { id = @recipe.ID }, null)</div>
+                            @*@Html.ActionLink("Ingredienser", "Ingredient", new { id = @recipe.ID }, null)*@
+                            @*| @Html.ActionLink("Se oppskrift", "Details", new { id = @recipe.ID }, null)*@
+                            @*| @Html.ActionLink("Rediger", "Edit", new { id = @recipe.ID }, null)*@ 
+                            @*| @Html.ActionLink("Slett", "Delete", new { id = @recipe.ID }, null)*@
                         </td>
                     </tr>
                 }

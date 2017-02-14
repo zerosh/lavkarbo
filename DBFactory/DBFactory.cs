@@ -110,9 +110,6 @@ namespace DBFactory
         Group GetGroup(int Id);
         List<Group> GetGroups(int Count);
 
-        int SaveRecipeIngredient(RecipeIngredient ingredient);
-        List<RecipeIngredient> GetRecipeIngredients(int RecipeId, int Count);
-        RecipeIngredient GetRecipeIngredient(int Id);
         void DeleteRecipeIngredient(int Id);
     }
 

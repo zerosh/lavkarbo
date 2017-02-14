@@ -12,14 +12,18 @@ namespace NewTestFramework.Models
         {
         }
 
-        public AddRecipeIngredientViewModel(int id)
+        public AddRecipeIngredientViewModel(int id, Recipe recipe)
         {
             this.RecipeId = id;
+            this.Recipe = recipe;
         }
+
         public string IngredientName { get; set; }
         public float Amount { get; set; }
         public int RecipeId { get; set; }
 
         public RecipeMesurement Mesurement { get; set; }
+
+        public Recipe Recipe { get; set; }
     }
 }

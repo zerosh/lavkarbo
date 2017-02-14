@@ -20,7 +20,7 @@ namespace NewTestFramework.Controllers
 
         public ActionResult Ingredient(int id)
         {
-            var recipe = new AddRecipeIngredientViewModel(id);
+            var recipe = new AddRecipeIngredientViewModel(id, DB.Instance.GetRecipe(id));
             return View(recipe);
         }
 
@@ -39,7 +39,12 @@ namespace NewTestFramework.Controllers
                 id = ingredient.Id;
             }
 
-            DB.Instance.SaveRecipeIngredient(new RecipeIngredient(id, model.RecipeId, model.Amount, model.Mesurement));
+            var recipe = DB.Instance.GetRecipe(model.RecipeId);
+            recipe.Ingredients.Add(new RecipeIngredient(id, model.Amount, model.Mesurement));
+
+            DB.Instance.SaveRecipe(recipe);
+
+            //DB.Instance.SaveRecipeIngredient(new RecipeIngredient(id, model.RecipeId, model.Amount, model.Mesurement));
 
             return RedirectToAction("Ingredient", "Recipe", model);
         }
@@ -78,9 +83,11 @@ namespace NewTestFramework.Controllers
             {
                 if (Request.Files != null)
                 {
+                    //recipe.Ingredients.Add(new RecipeIngredient() { Amount = 2 });
                     recipe.FinishedMealImage.SaveImage(Request.Files[0]);
-                    DB.Instance.SaveRecipe(recipe);
-                    return RedirectToAction("Index");
+                    int id = DB.Instance.SaveRecipe(recipe);
+                    return RedirectToAction("Ingredient", new { id = id }); // redirect to adding ingredients to this recipe.
+                    //return RedirectToAction("Index");
                 }
 
                 return null;

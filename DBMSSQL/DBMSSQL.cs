@@ -142,18 +142,6 @@ namespace DBMSSQL
             context.Users.Remove(GetUser(Username));
         }
 
-        public int SaveRecipeIngredient(RecipeIngredient ingredient)
-        {
-            context.RecipeIngredient.Add(ingredient);
-            context.SaveChanges();
-            return ingredient.Id;
-        }
-
-        public List<RecipeIngredient> GetRecipeIngredients(int recipeId, int Count)
-        {
-            return context.RecipeIngredient.Where(p => p.RecipeId == recipeId).Take(Count).ToList();
-        }
-
         public RecipeIngredient GetRecipeIngredient(int Id)
         {
             return context.RecipeIngredient.Where(p => p.Id == Id).FirstOrDefault();
