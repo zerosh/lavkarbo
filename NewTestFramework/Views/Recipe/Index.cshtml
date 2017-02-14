@@ -77,8 +77,7 @@
                             @{ 
                                 string publish = @recipe.Published == true ? "Ja" : "Nei";
                             }
-
-                            @publish
+                            @Html.ActionLink(publish, "TogglePublished", new { id = recipe.ID})
                         </td>
 
                         <td>

@@ -18,7 +18,6 @@
         <div class="container">
             <div class="hidden-print">
                 <ul class="breadcrumb">
-                    <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
                     <li><a href="/Recipe/ViewGroup/@group.Id">@group.Name</a></li>
                     <li>@Model.Title</li>
                 </ul>
@@ -102,6 +101,7 @@
                     </div>
 
                     <div class="row text-center hidden-print">
+                        <hr />
                         <img src="@Model.FinishedMealImage.Image" class="img-responsive"/>
                     </div>
                 </div>
