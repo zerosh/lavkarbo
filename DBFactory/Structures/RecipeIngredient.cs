@@ -20,7 +20,8 @@ namespace DBFactory.Structures
 
         Teskje,
         Spiseskje,
-        Stk
+        Stk,
+        Ingen
     }
 
     /*
@@ -35,6 +36,20 @@ namespace DBFactory.Structures
         public float Amount { get; set; }
         public int RecipeId { get; set; }
         public RecipeMesurement Mesurement { get; set; }
+
+        public string FormattedText
+        {
+            get
+            {
+                switch (Mesurement)
+                {
+                    case RecipeMesurement.Ingen:
+                        return string.Format("");
+                    default:
+                        return string.Format("{0} {1}", Amount, GetMesurementType());
+                }
+            }
+        }
 
         public string GetMesurementType()
         {
@@ -61,7 +76,7 @@ namespace DBFactory.Structures
                 case RecipeMesurement.Spiseskje:
                     return "ss";
                 default:
-                    throw new NotImplementedException();
+                    return "";
             }
         }
 

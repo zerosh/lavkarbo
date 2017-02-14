@@ -34,7 +34,7 @@
             <div class="col-md-3">
                 <!-- Ingredients-->
                 <div class="col-md-12">
-                    <h2>Ingredienser</h2>
+                    <h3>Ingredienser</h3>
                     <ul>
                         @foreach (var ingredient in Model.Ingredients)
                         {
@@ -42,7 +42,10 @@
 
                             if (ingredientType != null)
                             {
-                                <li>@ingredient.Amount @ingredient.GetMesurementType() @ingredientType.Name </li>
+                                <li>
+                                    @ingredient.FormattedText @ingredientType.Name
+                                </li>
+                                @*<li>@ingredient.Amount @ingredient.GetMesurementType() @ingredientType.Name </li>*@
                             }
                         }
 
@@ -91,7 +94,9 @@
                     </div>
                     <hr />
                     <div class="row">
-                        @Html.Raw(@Model.ShortDescription.FormattedText)
+                        <h3>
+                            @Html.Raw(@Model.ShortDescription.FormattedText)
+                        </h3>
                     </div>
 
                     <br />

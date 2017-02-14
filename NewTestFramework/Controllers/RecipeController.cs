@@ -126,7 +126,7 @@ namespace NewTestFramework.Controllers
 
         public ActionResult ViewGroup(int Id)
         {
-            return View(DB.Instance.GetRecipesFromGroup(Id).OrderByDescending(p => p.ID).ToList());
+            return View(DB.Instance.GetRecipesFromGroup(Id).Where(p => p.Published == true).OrderByDescending(p => p.ID).ToList());
         }
     }
 }

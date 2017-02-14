@@ -18,7 +18,7 @@ namespace DBFactory.Structures
         public HTMLFormattedTextExtension FullDescription { get; set; }
         public int Difficulty { get; set; }
         public int PreparationTime { get; set; }
-        public List<RecipeIngredient> Ingredients { get; set; }
+        public virtual List<RecipeIngredient> Ingredients { get; set; }
 
         public Recipe()
         {
