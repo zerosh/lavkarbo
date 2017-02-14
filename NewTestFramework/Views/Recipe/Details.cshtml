@@ -41,11 +41,15 @@
                 <!-- Ingredients-->
                 <div class="col-md-12">
                     <h2>Ingredienser</h2>
-
                     <ul>
-                        <li>Egg 3 &#189; stk</li>
+                        @foreach (var recipeIngredient in DBFactory.DB.Instance.GetRecipeIngredients(Model.ID, int.MaxValue))
+                        {
+                            var ingredient = @DBFactory.DB.Instance.GetIngredient(@recipeIngredient.IngredientId);
+                            <li>@recipeIngredient.Amount @recipeIngredient.GetMesurementType() @ingredient.Name</li>
+                        }
+                        @*<li>Egg 3 &#189; stk</li>
                         <li>Vann 2 &#189; dl</li>
-                        <li>Salt 1 &#189; ts </li>
+                        <li>Salt 1 &#189; ts </li>*@
                     </ul>
                 </div><!-- /Ingredients. -->
 

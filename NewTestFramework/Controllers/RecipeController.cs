@@ -15,7 +15,7 @@ namespace NewTestFramework.Controllers
         // GET: Recipe
         public ActionResult Index()
         {
-            return View();
+            return View(DB.Instance.GetRecipes(int.MaxValue));
         }
 
         public ActionResult Ingredient(int id)
@@ -39,7 +39,7 @@ namespace NewTestFramework.Controllers
                 id = ingredient.Id;
             }
 
-            DB.Instance.SaveRecipeIngredient(new RecipeIngredient(id, model.RecipeId, model.Amount));
+            DB.Instance.SaveRecipeIngredient(new RecipeIngredient(id, model.RecipeId, model.Amount, model.Mesurement));
 
             return RedirectToAction("Ingredient", "Recipe", model);
         }

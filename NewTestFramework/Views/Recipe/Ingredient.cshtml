@@ -27,17 +27,35 @@
         </div>
         <hr />
         <div class="container">
-            <ul>
-                @foreach (var ingredient in DBFactory.DB.Instance.GetRecipeIngredients(Model.RecipeId, int.MaxValue))
-                {
-                    var ingredientData = DBFactory.DB.Instance.GetIngredient(ingredient.IngredientId);
-                    string ingredientName = ingredientData != null ? ingredientData.Name : "ERROR";
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Antall</th>
+                        <th>Måleenhet</th>
+                        <th>Handling</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var ingredient in DBFactory.DB.Instance.GetRecipeIngredients(Model.RecipeId, int.MaxValue))
+                        {
+                            var ingredientData = DBFactory.DB.Instance.GetIngredient(ingredient.IngredientId);
+                            string ingredientName = ingredientData != null ? ingredientData.Name : "ERROR";
 
-                    <li>@ingredientName - @ingredient.Amount @Html.ActionLink("Slett", "DeleteIngredient", new { id = ingredient.Id, recipeId = Model.RecipeId })</li>
-                }
-            </ul>
+                            <tr>
+                                <th>@ingredientName</th>
+                                <th>@ingredient.Amount</th>
+                                <th>@ingredient.GetMesurementType()</th>
+                                <th>@Html.ActionLink("Slett", "DeleteIngredient", new { id = ingredient.Id, recipeId = Model.RecipeId })</th>
+                            </tr>
+                        }
+                            
+                </tbody>
+            </table>
         </div>
         <hr />
+
+        <div class="container">
 
         @using (Html.BeginForm("Ingredient", "Recipe", FormMethod.Post))
         {
@@ -53,7 +71,14 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Antall</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(p => p.Amount)
+                    @Html.TextBoxFor(p => p.Amount, new { step="0.01", Value="" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Type</label>
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(p => p.Mesurement)
                 </div>
             </div>
 
