@@ -1,11 +1,7 @@
 ﻿using DBFactory;
 using DBFactory.Structures;
 using NewTestFramework.Models;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace NewTestFramework.Controllers
@@ -89,7 +85,7 @@ namespace NewTestFramework.Controllers
             {
                 if (Request.Files != null)
                 {
-                    recipe.FinishedMealImage.SaveImage(Request.Files[0]);
+                    recipe.FinishedMealImage.SaveImage(Request.Files[0], 1024, 600);
                     int id = DB.Instance.SaveRecipe(recipe);
                     return RedirectToAction("Ingredient", new { id = id }); // redirect to adding ingredients to this recipe.
                     //return RedirectToAction("Index");

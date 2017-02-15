@@ -69,28 +69,17 @@
                             }
                         </td>
 
-                        <td>
-                            <img src="@recipe.FinishedMealImage.Image" width="150" height="150" />
-                        </td>
+                        <td><img src="@recipe.FinishedMealImage.Image" width="150" height="150" /></td>
+                        @{
+                            string publish = @recipe.Published == true ? "Ja" : "Nei";
+                        }
+                        <td>@Html.ActionLink(publish, "TogglePublished", new { id = recipe.ID})</td>
 
-                        <td>
-                            @{ 
-                                string publish = @recipe.Published == true ? "Ja" : "Nei";
-                            }
-                            @Html.ActionLink(publish, "TogglePublished", new { id = recipe.ID})
-                        </td>
+                        <td>@recipe.Ingredients.Count</td>
 
-                        <td>
-                            @recipe.Ingredients.Count
-                        </td>
+                        <td>@recipe.Difficulty</td>
 
-                        <td>
-                            @recipe.Difficulty
-                        </td>
-
-                        <td>
-                            @recipe.PreparationTime
-                        </td>
+                        <td>@recipe.PreparationTime</td>
 
                         <td>
                             <div class="row">@Html.ActionLink("Ingredienser", "Ingredient", new { id = @recipe.ID }, null)</div>

@@ -46,37 +46,40 @@ namespace DBFactory.Structures
                     case RecipeMesurement.Ingen:
                         return string.Format("");
                     default:
-                        return string.Format("{0} {1}", Amount, GetMesurementType());
+                        return string.Format("{0} {1}", Amount, FormattedMesurement);
                 }
             }
         }
 
-        public string GetMesurementType()
+        public string FormattedMesurement
         {
-            switch (Mesurement)
+            get
             {
-                case RecipeMesurement.Kilogram:
-                    return "kg";
-                case RecipeMesurement.Gram:
-                    return "gram";
-                case RecipeMesurement.Milligram:
-                    return "mg";
-                case RecipeMesurement.Liter:
-                    return "liter";
-                case RecipeMesurement.Desiliter:
-                    return "dl";
-                case RecipeMesurement.Centiliter:
-                    return "cl";
-                case RecipeMesurement.Milliliter:
-                    return "ml";
-                case RecipeMesurement.Stk:
-                    return "stk";
-                case RecipeMesurement.Teskje:
-                    return "ts";
-                case RecipeMesurement.Spiseskje:
-                    return "ss";
-                default:
-                    return "";
+                switch (Mesurement)
+                {
+                    case RecipeMesurement.Kilogram:
+                        return "kg";
+                    case RecipeMesurement.Gram:
+                        return "gram";
+                    case RecipeMesurement.Milligram:
+                        return "mg";
+                    case RecipeMesurement.Liter:
+                        return "liter";
+                    case RecipeMesurement.Desiliter:
+                        return "dl";
+                    case RecipeMesurement.Centiliter:
+                        return "cl";
+                    case RecipeMesurement.Milliliter:
+                        return "ml";
+                    case RecipeMesurement.Stk:
+                        return "stk";
+                    case RecipeMesurement.Teskje:
+                        return "ts";
+                    case RecipeMesurement.Spiseskje:
+                        return "ss";
+                    default:
+                        return "";
+                }
             }
         }
 

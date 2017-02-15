@@ -15,12 +15,12 @@
 <body>
     <hr />
     <div>
-        <div class="container col-xs-12">
+        <div class="container col-xs-12 col-md-12">
             @foreach (var recipe in Model)
             {
                 <a href="/Recipe/Details/@recipe.ID">
                     <div class="col-md-4 text-center">
-                        <img src="@recipe.FinishedMealImage.Image" width="200" height="200" />
+                        <img src="@recipe.FinishedMealImage.Image" class="img-responsive"/>
                         <h3>@recipe.Title</h3>
 
                         <div>
@@ -31,6 +31,9 @@
                                     <i class="fa fa-star icon" aria-hidden="true"></i>
                                 }
                             }
+                        </div>
+                        <div class="row">
+                            <i class="fa fa-clock-o icon" aria-hidden="true">@recipe.PreparationTime min </i>
                         </div>
                         @*
     @Html.Raw(@recipe.ShortDescription.FormattedText)

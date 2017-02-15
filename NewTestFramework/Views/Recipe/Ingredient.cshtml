@@ -79,7 +79,7 @@
                             <tr>
                                 <th>@ingredientName</th>
                                 <th>@ingredient.Amount</th>
-                                <th>@ingredient.GetMesurementType()</th>
+                                <th>@ingredient.FormattedMesurement</th>
                                 <th>@Html.ActionLink("Slett", "DeleteIngredient", new { id = ingredient.Id, recipeId = Model.RecipeId })</th>
                             </tr>
                         }
